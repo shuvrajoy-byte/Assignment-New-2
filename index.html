@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Assignment 2</title>
+
+    <style>
+        /* Basic Setup */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0d0628;
+            color: white;
+        }
+
+        /* --- NAVBAR --- */
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .pink-text {
+            color: #ff00ff;
+        }
+
+        .menu a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 14px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(to right, #ffcc00, #ff00cc, #9900ff);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Hamburger icon for assets */
+        .hamburger-icon {
+            display: none;
+            width: 30px;
+            cursor: pointer;
+        }
+
+        /* --- BANNER --- */
+        .banner {
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-image: url('assets/hero-bg.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .circle {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px auto;
+            border-radius: 50%;
+            background: linear-gradient(to bottom, #ffcc00, #ff00cc, #9900ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mic {
+            width: 100px;
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 0;
+            background-color: #00ffcc;
+            color: black;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .title {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .text {
+            color: #ccc;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        /* BANNER BUTTONS */
+        .btn-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn-pink {
+            background: linear-gradient(to right, #ffcc00, #ff00cc);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #00ffcc;
+            color: #00ffcc;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            width: 20px;
+        }
+
+        /* about section */
+        .about-area {
+            background-color: #0d0628;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .about-top {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-title {
+            font-size: 40px;
+            margin-bottom: 25px;
+        }
+
+        .about-text {
+            color: #b3b3b3;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .line {
+            border: 0;
+            border-top: 1px solid #2a224a;
+            margin: 60px auto;
+            width: 80%;
+        }
+
+        /* Horizontal alignment logic */
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .stat-box {
+            flex: 1;
+        }
+
+        .number {
+            color: #1ed760;
+            font-size: 45px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px; 
+        }
+
+        .number i {
+            font-size: 25px;
+        }
+
+        .label {
+            color: #b3b3b3;
+            font-size: 13px;
+            letter-spacing: 1px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        /* Grid style */
+        .grid-area {
+            background-color: #0d0628;
+            color: white;
+            padding: 60px 50px;
+            text-align: center;
+        }
+
+        .grid-main-title {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        
+        .grid-box-wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: left;
+            align-items: start; 
+}
+
+        .grid-box {
+            background-color: #160a3a;
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid #25184d;
+            height: auto; 
+}
+
+        .grid-img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 15px;
+        }
+
+        .grid-head {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .grid-desc {
+            color: #b3b3b3;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .grid-tall {
+            grid-row: span 2;
+            height: 85%;
+        }
+
+        .grid-wide {
+            grid-column: span 2;
+        }
+        /* episode section */
+        .episode-section {
+            background-color: #0d0628;
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .title {
+            font-size: 35px;
+            margin-bottom: 50px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: #1a0b41;
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .img-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .main-img {
+            width: 100%;
+            height: 220px; 
+            object-fit: cover;
+            display: block;
+        }
+
+        .play-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(to right, #f7d02c, #ff4e50, #d42ad3);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .play-circle i {
+            color: white;
+            font-size: 18px;
+            margin-left: 3px;
+        }
+
+        .card-text {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 19px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .card-desc {
+            color: #b3b3b3;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #1ed760; 
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .card-footer i {
+            font-size: 16px;
+        }
+
+        /* Meet The Host */
+        .host-section {
+            background-color: #0d0628;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .host-main-title {
+            font-size: 36px;
+            margin-bottom: 50px;
+            font-weight: bold;
+        }
+
+        /* Main Card Container */
+        .host-card {
+            background-color: #1e0b44;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 50px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            text-align: left;
+        }
+
+        /* Image Styling */
+        .host-image-area {
+            flex-shrink: 0;
+        }
+
+        .host-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #2a115e;
+        }
+
+        /* Text Content Styling */
+        .host-name {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .host-para {
+            color: #b3b3b3;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Social Icons Styling */
+        .host-socials {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 25px;
+            height: 25px;
+            padding: 8px;
+            background-color: #2a115e;
+            color: white;
+            text-decoration: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            transition: 0.3s;
+            border: 1px solid #442288;
+        }
+
+        /* footer section style */
+        .footer-area {
+            background-color: #0d0628;
+            background-image: url('assets/footer-bg.png');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 20px; /* Padding for background visibility */
+            text-align: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .footer-logo {
+            font-size: 50px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* Desktop Social Layout */
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .footer-icon {
+            width: 25px;
+            font-size: 22px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-item span {
+            color: #b3b3b3;
+            font-size: 16px;
+        }
+
+        .copy-text {
+            color: #adadad;
+            font-size: 15px;
+            margin-top: 20px;
+        }
+
+        /* --- RESPONSIVE BREAKPOINTS --- */
+
+        /* Medium Device: 576px to 992 px */
+        @media (max-width: 992px) {
+            .nav { padding: 20px 30px; }
+            
+            /* Grid Fix */
+            .grid-box-wrapper { grid-template-columns: repeat(2, 1fr); }
+            .grid-wide, .grid-tall { grid-column: span 1; grid-row: span 1; }
+
+            /* Episode Fix: Ekta ekta card */
+            .row { flex-direction: column; align-items: center; gap: 30px; }
+            .card { width: 100%; max-width: 500px; }
+
+            /* Host Card Fix */
+            .host-card { flex-direction: column; text-align: center; }
+            .host-socials { justify-content: center; }
+        }
+
+        /* Small device: up to 576 px */
+        @media (max-width: 576px) {
+            .menu, .nav-btn { display: none; }
+            .hamburger-icon { display: block; }
+            .nav { padding: 15px 20px; }
+
+            /* Banner & Mic Fix */
+            .banner { height: auto; padding: 60px 20px; }
+            .circle { width: 140px; height: 140px; }
+            .mic { width: 65px; }
+            .title { font-size: 35px; }
+            .btn-row { flex-direction: row; gap: 10px; }
+            .btn-pink, .btn-outline { padding: 10px 15px; font-size: 12px; }
+
+            /* About section: 2 boxes per row */
+            .stats-row { flex-wrap: wrap; gap: 20px; }
+            .stat-box { flex: 1 1 45%; }
+            .number { font-size: 30px; }
+
+            /* Grid Mobile Fix: Spacing Between Card 1 and 2 */
+            .grid-box-wrapper { 
+                grid-template-columns: 1fr; 
+                gap: 30px; /* Increased gap to prevent cards from touching */
+            }
+            .grid-tall {
+                grid-row: span 1;
+                height: auto; /* Resetting height for mobile flow */
+            }
+
+            /* Footer Responsive: 2 icons pasha pashi */
+            .social-row {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px 40px;
+                width: fit-content;
+            }
+            .footer-logo { font-size: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="nav">
+        <div class="logo">
+            Tech<span class="pink-text">Wave</span>
+        </div>
+        <div class="menu">
+            <a href="#">About</a>
+            <a href="#">Episodes</a>
+            <a href="#">Host</a>
+        </div>
+        <button class="nav-btn">Subscribe &rarr;</button>
+        <img src="assets/hamburger-menu.png" class="hamburger-icon">
+    </nav>
+
+    <!-- BANNER -->
+    <!-- <section class="banner">
+        <div class="content">
+            <div class="circle">
+                <img src="assets/microphone.png" class="mic" alt="">
+                <div class="badge">NEW</div>
+            </div>
+            <h1 class="title">TechWave</h1>
+            <p class="text">Your daily dose of tech insights, productivity hacks, and personal growth.</p>
+            <div class="btn-row">
+                <button class="btn-pink">
+                    <img src="assets/spotify.png" class="icon" alt=""> On Spotify
+                </button>
+                <button class="btn-outline">
+                    <img src="assets/message.png" class="icon" alt=""> Subscribe
+                </button>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- about section -->
+    <!-- <section class="about-area">
+        <div class="about-top">
+            <h2 class="about-title">About The Podcast</h2>
+            <p class="about-text">
+                TechWave is your go-to podcast for staying ahead in the fast-paced world of technology. 
+                We break down complex topics into digestible insights, explore productivity strategies that actually work, 
+                and share stories of personal growth from industry leaders.
+            </p>
+            <p class="about-text">
+                Join thousands of young professionals and tech enthusiasts who start their day with TechWave.
+            </p>
+        </div>
+        <hr class="line">
+        <div class="stats-row">
+            <div class="stat-box">
+                <h1 class="number">150K <i class="fa-solid fa-plus"></i></h1>
+                <p class="label">MONTHLY LISTENERS</p>
+            </div>
+
+            <div class="stat-box">
+                <h1 class="number">200 <i class="fa-solid fa-plus"></i></h1>
+                <p class="label">EPISODES PUBLISHED</p>
+            </div>
+
+            <div class="stat-box">
+                <h1 class="number">4.9 <i class="fa-solid fa-star"></i></h1>
+                <p class="label">AVERAGE RATING</p>
+            </div>
+
+            <div class="stat-box">
+                <h1 class="number">50 <i class="fa-solid fa-plus"></i></h1>
+                <p class="label">INDUSTRY EXPERTS</p>
+            </div>
+        </div>
+    </section> -->
+    
+    <!-- grid section -->
+    <!-- <section class="grid-area">
+        <h2 class="grid-main-title">Why Choose TechWave</h2>
+        <div class="grid-box-wrapper">
+            <div class="grid-box grid-tall">
+                <img src="assets/headphone.png" class="grid-img">
+                <h3 class="grid-head">Premium Audio Quality</h3>
+                <p class="grid-desc">Experience crystal-clear sound with professional-grade recording equipment and expert audio engineering. Every episode is mastered for optimal listening across all devices and platforms.</p>
+            </div>
+            <div class="grid-box grid-wide">
+                <img src="assets/device.png" class="grid-img">
+                <h3 class="grid-head">Mobile Friendly</h3>
+                <p class="grid-desc">Listen on the go with seamless mobile experience and offline downloads.</p>
+            </div>
+            <div class="grid-box grid-wide">
+                <img src="assets/location.png" class="grid-img">
+                <h3 class="grid-head">Global Community</h3>
+                <p class="grid-desc">Connect with tech enthusiasts from over 120 countries worldwide.</p>
+            </div>
+            <div class="grid-box grid-wide">
+                <img src="assets/interview-icon.png" class="grid-img">
+                <h3 class="grid-head">Exclusive Interviews</h3>
+                <p class="grid-desc">Get unprecedented access to industry titans, startup founders, and tech visionaries. Our host secures exclusive conversations you won't find anywhere else, diving deep into their journeys, failures, and success strategies.</p>
+            </div>
+            <div class="grid-box">
+                <img src="assets/resource.png" class="grid-img">
+                <h3 class="grid-head">Rich Resources</h3>
+                <p class="grid-desc">Access show notes, transcripts, and additional learning materials for every episode.</p>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- episode section -->
+    <!-- <section class="episode-section">
+        <h2 class="title">Featured Episodes</h2>
+            <div class="row">
+            <div class="card">
+                <div class="img-box">
+                    <img src="assets/istockphoto-1409652124-612x612 (1).jpg" class="main-img">
+                    <div class="play-circle">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                </div>
+                <div class="card-text">
+                    <h3 class="card-title">The Future of AI in Everyday Life</h3>
+                    <p class="card-desc">Exploring how artificial intelligence is transforming our daily routines and what to expect in the next decade.</p>
+                    <div class="card-footer">
+                        <i class="fa-regular fa-clock"></i>
+                        <span>42 min</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="img-box">
+                    <img src="assets/photo-portrait-two-friends-recording-podcast-programme-make-cover-song_763111-326239.avif" class="main-img">
+                    <div class="play-circle">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                </div>
+                <div class="card-text">
+                    <h3 class="card-title">Building Better Habits for Remote Work</h3>
+                    <p class="card-desc">Practical strategies for staying productive and maintaining work-life balance in a remote environment.</p>
+                    <div class="card-footer">
+                        <i class="fa-regular fa-clock"></i>
+                        <span>35 min</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="img-box">
+                    <img src="assets/two-men-recording-podcast-studio_175117-4228.avif" class="main-img">
+                    <div class="play-circle">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                </div>
+                <div class="card-text">
+                    <h3 class="card-title">Career Growth in Tech: A Roadmap</h3>
+                    <p class="card-desc">Expert advice on navigating your tech career from junior developer to senior leadership roles.</p>
+                    <div class="card-footer">
+                        <i class="fa-regular fa-clock"></i>
+                        <span>51 min</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Meet The Host -->
+    <!-- <section class="host-section">
+    <h2 class="host-main-title">Meet The Host</h2>
+    <div class="host-card">
+        <div class="host-image-area">
+            <img src="assets/host.png" class="host-img">
+        </div>
+        <div class="host-details">
+            <h3 class="host-name">Alex Kumar</h3>
+            <p class="host-para">
+                Tech entrepreneur, productivity expert, and lifelong learner. Alex has been in the tech industry for over 10 years, working with startups and Fortune 500 companies. Through TechWave, Alex shares insights from industry leaders and practical advice for anyone looking to grow in tech.
+            </p>
+            <div class="host-socials">
+                <img src="assets/linkedin.png" class="social-icon">
+                <img src="assets/x.png" class="social-icon">
+                <img src="assets/instagram.png" class="social-icon">
+                <img src="assets/youtube.png" class="social-icon">
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<!-- footer section -->
+ <!-- <footer class="footer-area">
+    <div class="footer-logo">
+        Tech<span class="pink-text">Wave</span>
+    </div>
+    <div class="social-row">
+        <div class="social-item">
+            <img src="assets/spotify.png" class="footer-icon">
+            <span>Spotify</span>
+        </div>
+        
+        <div class="social-item">
+            <img src="assets/apple-podcast.png" class="footer-icon">
+            <span>Apple Podcasts</span>
+        </div>
+
+        <div class="social-item">
+            <img src="assets/youtube-podcast.png" class="footer-icon">
+            <span>YouTube</span>
+        </div>
+
+        <div class="social-item">
+            <i class="fa-brands fa-x-twitter footer-icon"></i>
+            <span>Twitter</span>
+        </div>
+    </div>
+
+    <p class="copy-text">© 2026 TechWave Podcast. All rights reserved.</p>
+</footer> -->
+</body>
+</html>
